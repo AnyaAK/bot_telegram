@@ -16,7 +16,7 @@ def markup_inline():
 def start_user(message):
   name=message.chat.first_name
   bot.send_message(message.chat.id, "Hello " + name +" !" " I'm Chico Chico🙋" , reply_markup = markup_inline())
-  bot.send_message(message.chat.id, "Select /greet , /register or /instagram")
+  bot.send_message(message.chat.id, "Select /greet , /register , /Github or /instagram")
 
 @bot.callback_query_handler(func = lambda message:True)
 def callback_query(call):
@@ -42,6 +42,11 @@ def pin_code_step(message):
 def greet_user(message):
   bot.reply_to(message, "How are you dude?😃")
 
+
+@bot.message_handler(commands=['Github'])
+def Github_user(message):
+  bot.reply_to(message, "https://github.com/AnyaAK/bot_telegram")
+
 def find_at(msg):
     for text in msg:
         if '@' in text:
@@ -61,6 +66,9 @@ def answer(message):
 @bot.message_handler(func=lambda msg: True)
 def echo_all(message):
     bot.reply_to(message, message.text)
+
+
+
 
 
 bot.polling()
